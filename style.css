@@ -1,0 +1,83 @@
+@property --a{syntax:"<color>";inherits:true;initial-value:#3a56ff}
+@property --b{syntax:"<color>";inherits:true;initial-value:#00c2ff}
+:root{--a:#3a56ff;--b:#00c2ff;--ink:#f6f5ff;--mut:#b0aed0;--glass:rgba(255,255,255,.08);--edge:rgba(255,255,255,.16);transition:--a 1s,--b 1s}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font:17px/1.6 Manrope,system-ui,sans-serif;color:var(--ink);background:#07070f;overflow-x:hidden}
+h1,h2{font-family:Sora,"Segoe UI",sans-serif;margin:0;line-height:1.05}
+button,input{font-family:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.blobs i{position:fixed;z-index:-1;width:48vmax;height:48vmax;border-radius:50%;filter:blur(100px);opacity:.5;pointer-events:none;animation:drift 16s ease-in-out infinite alternate}
+.blobs i:nth-child(1){background:var(--a);top:-18vmax;left:-12vmax}
+.blobs i:nth-child(2){background:var(--b);bottom:-20vmax;right:-14vmax;animation-delay:-6s}
+.blobs i:nth-child(3){background:#fff;opacity:.08;top:30vh;left:40vw;width:30vmax;height:30vmax;animation-delay:-10s}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(8vmax,6vmax) scale(1.2)}}
+.top{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.2rem clamp(1rem,5vw,4rem)}
+.brand{font:800 1.5rem Sora,sans-serif;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:.6rem}
+.brand::before{content:"";width:1.5rem;height:1.5rem;border-radius:50%;background:conic-gradient(var(--a),var(--b),var(--a));box-shadow:0 0 22px var(--b)}
+.tag{color:var(--mut);font-size:.9rem;border:1px solid var(--edge);background:var(--glass);padding:.35rem .9rem;border-radius:999px}
+.hero{padding:clamp(2rem,6vw,4rem) clamp(1rem,5vw,4rem) 1rem;max-width:84rem}
+.hero h1{font-size:clamp(2.8rem,7.5vw,6.4rem);font-weight:800;letter-spacing:-.035em;max-width:10em;background:linear-gradient(90deg,#fff,var(--b),var(--a),#fff);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 9s linear infinite}
+@keyframes shine{to{background-position:-300% 0}}
+.hero p{color:var(--mut);font-size:1.25rem;margin:1.2rem 0 1rem}
+.chips{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem}
+.chips span{font-size:.9rem;font-weight:600;padding:.4rem 1rem;border-radius:999px;border:1px solid var(--edge);background:var(--glass)}
+.moods{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem}
+.moods button{text-align:left;padding:1.3rem;border-radius:22px;border:1px solid var(--edge);background:var(--glass);color:var(--ink);cursor:pointer;font:800 1.2rem Sora,sans-serif;backdrop-filter:blur(14px);transition:transform .25s,box-shadow .25s,background .25s}
+.moods button em{display:grid;place-items:center;width:3.4rem;height:3.4rem;font-style:normal;font-size:1.7rem;border-radius:16px;margin-bottom:1rem;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 8px 24px -6px var(--c1)}
+.moods button small{display:block;font:500 .88rem Manrope,sans-serif;color:var(--mut);margin-top:.2rem}
+.moods button:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 18px 40px -14px var(--c1)}
+.moods button[aria-pressed=true]{background:rgba(255,255,255,.18);border-color:#fff;box-shadow:0 0 0 2px var(--c1),0 18px 50px -12px var(--c2)}
+.player{display:grid;grid-template-columns:1.5fr 1fr;grid-template-areas:"s l" "b l" "c l";gap:1.1rem 2rem;padding:2rem clamp(1rem,5vw,4rem) 4rem}
+.stage{grid-area:s;position:relative;height:min(64vh,540px);border-radius:30px;border:1px solid var(--edge);background:rgba(7,7,15,.6);backdrop-filter:blur(10px);overflow:hidden;box-shadow:0 0 90px -25px var(--b),inset 0 0 60px -30px var(--a)}
+canvas{position:absolute;inset:0;width:100%;height:100%}
+.now{position:absolute;inset:auto 0 0 0;padding:1.6rem;background:linear-gradient(transparent,rgba(7,7,15,.9))}
+.now span{color:var(--mut);font-size:.95rem}
+.now h2{font-size:clamp(1.6rem,3.6vw,2.6rem);margin:.15rem 0}
+.bar{grid-area:b;height:8px;border-radius:9px;background:var(--glass);overflow:hidden}
+.bar div{height:100%;width:0;background:linear-gradient(90deg,var(--a),var(--b));box-shadow:0 0 14px var(--b)}
+.ctrl{grid-area:c;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.ctrl>span{color:var(--mut);min-width:3rem;font-variant-numeric:tabular-nums}
+.btns{display:flex;gap:.9rem;align-items:center}
+.btns button{width:3.2rem;height:3.2rem;border-radius:50%;border:1px solid var(--edge);background:var(--glass);color:var(--ink);font-size:1.1rem;cursor:pointer}
+.btns button:hover{background:rgba(255,255,255,.2)}
+.btns .big{width:4.6rem;height:4.6rem;font-size:1.6rem;background:#fff;color:#07070f;border:0;box-shadow:0 0 30px -4px var(--b)}
+.playing .big{animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 50px 8px var(--b)}}
+.vol{display:flex;align-items:center;gap:.6rem;color:var(--mut);font-size:.9rem}
+.vol input{width:110px;accent-color:#fff}
+.list{grid-area:l;list-style:none;margin:0;padding:0;display:grid;gap:.7rem;align-content:start}
+.list button{width:100%;display:flex;align-items:center;gap:.8rem;padding:1.05rem 1.2rem;border-radius:16px;border:1px solid var(--edge);background:var(--glass);color:var(--ink);cursor:pointer;font:700 1rem Manrope,sans-serif;text-align:left;backdrop-filter:blur(10px);transition:transform .2s,background .2s}
+.list button span{margin-left:auto;color:var(--mut);font-weight:500;font-size:.85rem}
+.list button:hover{transform:translateX(5px);background:rgba(255,255,255,.14)}
+.list .on button{background:linear-gradient(90deg,var(--a),var(--b));border-color:transparent;box-shadow:0 10px 30px -10px var(--b)}
+.list .on button span{color:#fff}
+u{display:inline-flex;align-items:flex-end;gap:2px;height:16px;text-decoration:none}
+u i{width:3px;height:100%;background:#fff;border-radius:2px;animation:eq .7s ease-in-out infinite alternate;transform-origin:bottom}
+u i:nth-child(2){animation-delay:.2s}u i:nth-child(3){animation-delay:.4s}
+body:not(.playing) u i{animation-play-state:paused}
+@keyframes eq{from{transform:scaleY(.25)}to{transform:scaleY(1)}}
+footer{padding:1.5rem;text-align:center;color:var(--mut);font-size:.9rem}
+.btn{display:inline-block;background:#fff;color:#07070f;padding:.8rem 1.6rem;border-radius:999px;font-weight:700;text-decoration:none}
+.err{min-height:100vh;display:grid;place-items:center;text-align:center}
+.err h1{font-size:8rem}
+.err p{color:var(--mut);margin:.5rem 0 1.6rem}
+@media(max-width:850px){.player{grid-template-columns:1fr;grid-template-areas:"s" "b" "c" "l"}.tag{display:none}}
+@media(prefers-reduced-motion:reduce){:root{transition:none}.blobs i,.hero h1,.playing .big,u i{animation:none}.moods button,.list button{transition:none}}
+.groups{display:flex;gap:.6rem;flex-wrap:wrap;margin:0 0 1.2rem}
+.groups button{font:700 .95rem Manrope,sans-serif;color:var(--ink);background:var(--glass);border:1px solid var(--edge);padding:.5rem 1.2rem;border-radius:999px;cursor:pointer}
+.groups button[aria-pressed=true]{background:#fff;color:#07070f}
+.help{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;padding:0 clamp(1rem,5vw,4rem) 1.5rem}
+.help div{border:1px solid var(--edge);background:var(--glass);backdrop-filter:blur(12px);border-radius:22px;padding:1.5rem;border-top:4px solid var(--b)}
+.help h3{font:800 1.15rem Sora,sans-serif;margin:0 0 .5rem}
+.help p{margin:0;color:var(--mut)}
+.note{max-width:52rem;margin:0 auto;padding:0 1rem 1rem;text-align:center;color:var(--mut);font-size:.88rem}
+select{background:rgba(255,255,255,.1);color:var(--ink);border:1px solid var(--edge);border-radius:8px;padding:.3rem .5rem;font:inherit}
+select option{color:#07070f}
+@media(max-width:850px){.help{grid-template-columns:1fr}}
+
+/* tempo meter in the track list */
+.list button span{display:inline-flex;align-items:center;gap:.4rem}
+.list button span s{display:inline-flex;align-items:flex-end;gap:2px;height:.9rem;text-decoration:none}
+.list button span s b{width:4px;border-radius:2px;background:currentColor;opacity:.25}
+.list button span s b:nth-child(1){height:30%}.list button span s b:nth-child(2){height:55%}.list button span s b:nth-child(3){height:80%}.list button span s b:nth-child(4){height:100%}
+.list button span s b.f{opacity:1}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0a12">
+<title>Moodwave | Music for every mood</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="blobs" aria-hidden="true"><i></i><i></i><i></i></div>
+<header class="top">
+  <a class="brand" href="#top">moodwave</a>
+  <span class="tag">Every sound is generated live in your browser</span>
+</header>
+<main>
+<section class="hero">
+  <h1>What does today sound like?</h1>
+  <p>Pick a mood. Moodwave composes music for it on the spot.</p>
+  <div class="chips"><span>15 moods</span><span>60 live-composed tracks</span><span>10 made for wellbeing</span><span>0 audio files stored</span></div>
+  <div id="groups" class="groups" role="group" aria-label="Mood groups"></div>
+  <div id="moods" class="moods" role="group" aria-label="Choose a mood"></div>
+</section>
+
+<section class="player">
+  <div class="stage">
+    <canvas id="viz" aria-label="Music visualizer"></canvas>
+    <div class="now">
+      <span id="nMood">Press play</span>
+      <h2 id="nTrack">Choose a mood to begin</h2>
+      <span id="nMeta"></span>
+    </div>
+  </div>
+  <div class="bar"><div id="fill"></div></div>
+  <div class="ctrl">
+    <span id="tm">0:00</span>
+    <div class="btns">
+      <button id="prev" aria-label="Previous track" type="button">&#9198;</button>
+      <button id="pp" class="big" aria-label="Play" type="button">&#9654;</button>
+      <button id="next" aria-label="Next track" type="button">&#9197;</button>
+    </div>
+    <label class="vol">Volume <input id="vol" type="range" min="0" max="1" step="0.01" value="0.6"></label>
+    <label class="vol">Sleep timer <select id="sleep"><option value="0">Off</option><option value="15">15 min</option><option value="30">30 min</option><option value="60">60 min</option></select></label>
+  </div>
+  <ol id="list" class="list"></ol>
+</section>
+<section id="help" class="help" aria-live="polite"></section>
+<p class="note">Moodwave is for relaxation and is not medical treatment. Keep the volume moderate. If you feel unsafe or overwhelmed, talk to someone you trust or call a helpline (India: Tele-MANAS 14416).</p>
+</main>
+<footer>A web audio project by [Bhoomika J Kumar] · [ISE] · [The National Institute Of Engineering] · Hosted on Amazon S3</footer>
+<script src="js/script.js"></script>
+</body>
+</html>
